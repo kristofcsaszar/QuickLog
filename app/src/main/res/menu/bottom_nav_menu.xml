@@ -4,4 +4,12 @@
         android:id="@+id/logs"
         android:title="Logs"
         />
+    <item
+        android:id="@+id/visualisation"
+        android:title="Visualisation"
+        />
+    <item
+        android:id="@+id/export"
+        android:title="Export"
+        />
 </menu>
