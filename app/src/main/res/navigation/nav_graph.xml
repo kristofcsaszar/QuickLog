@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/logMainFragment">
+
+    <fragment
+        android:id="@+id/dataVizFragment"
+        android:name="hu.bme.aut.quicklog.visualisation.DataVizFragment"
+        android:label="fragment_data_viz" />
+    <fragment
+        android:id="@+id/exporterFragment"
+        android:name="hu.bme.aut.quicklog.exporterFragment"
+        android:label="fragment_exporter"
+        tools:layout="@layout/fragment_exporter" />
+    <fragment
+        android:id="@+id/logMainFragment"
+        android:name="hu.bme.aut.quicklog.logs.LogMainFragment"
+        android:label="LogMainFragment" />
+</navigation>

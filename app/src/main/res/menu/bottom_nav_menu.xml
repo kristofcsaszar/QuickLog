@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/logs"
-        android:title="Logs"
+        android:id="@+id/logMainFragment"
+        android:title="@string/logs"
+        android:icon="@drawable/ic_pencil_grey600_48dp"
         />
     <item
-        android:id="@+id/visualisation"
-        android:title="Visualisation"
+        android:id="@+id/dataVizFragment"
+        android:title="@string/visualisation"
+        android:icon="@drawable/ic_pencil_grey600_48dp"
+
         />
     <item
-        android:id="@+id/export"
-        android:title="Export"
+        android:id="@+id/exporterFragment"
+        android:title="@string/export"
+        android:icon="@drawable/ic_pencil_grey600_48dp"
+
         />
 </menu>
