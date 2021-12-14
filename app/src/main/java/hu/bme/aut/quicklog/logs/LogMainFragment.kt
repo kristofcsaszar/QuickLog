@@ -11,9 +11,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hu.bme.aut.quicklog.dataModel.LogDataBase
 import hu.bme.aut.quicklog.dataModel.LogItem
 import hu.bme.aut.quicklog.databinding.LogMainFragmentBinding
+import java.util.*
 import kotlin.concurrent.thread
 
-class LogMainFragment : Fragment(), LogAdapter.LogItemClickListener {
+class LogMainFragment : Fragment(), LogAdapter.LogItemClickListener, AddLogFragment.AddLogListener {
     private lateinit var binding: LogMainFragmentBinding
     private lateinit var applicationContext: Context
     private lateinit var database: LogDataBase
@@ -42,7 +43,8 @@ class LogMainFragment : Fragment(), LogAdapter.LogItemClickListener {
         Log.d("startup", "MainFragment onViewCreated")
         initRecyclerView()
         binding.fab.setOnClickListener {
-            //TODO
+            // using childFragmentManager, so the DialogFragment can reach this one
+            AddLogFragment().show(this.childFragmentManager, AddLogFragment::class.java.simpleName)
         }
     }
 
@@ -57,7 +59,8 @@ class LogMainFragment : Fragment(), LogAdapter.LogItemClickListener {
     private fun loadItemsInBackground() {
         thread {
             val items = database.logItemDao().getAll()
-            activity?.runOnUiThread {
+            activity?.runOnUiThread{
+                Log.d("persistence","updating items in adapter")
                 adapter.update(items)
             }
         }
@@ -70,5 +73,21 @@ class LogMainFragment : Fragment(), LogAdapter.LogItemClickListener {
         }
     }
 
-
+    override fun onLogAdded(
+        title: String,
+        score: Int,
+        description: String,
+        year: Int,
+        month: Int,
+        day: Int
+    ) {
+        Log.d("persistence","onLogAdded $title $description")
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, day)
+        val logDataItem = LogItem(null,title, score,description, calendar.time)
+        adapter.addItem(logDataItem)
+        thread {
+            database.logItemDao().insert(logDataItem)
+        }
+    }
 }

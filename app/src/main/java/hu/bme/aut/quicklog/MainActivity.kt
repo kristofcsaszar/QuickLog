@@ -27,4 +27,5 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setupWithNavController(navController)
         Log.d("startup", "END Main Activity onCreate")
     }
+
 }

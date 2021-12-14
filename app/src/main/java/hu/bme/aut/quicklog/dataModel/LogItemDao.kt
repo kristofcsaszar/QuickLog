@@ -4,7 +4,7 @@ import androidx.room.*
 
 @Dao
 interface LogItemDao {
-    @Query("SELECT * FROM logitem ORDER BY date")
+    @Query("SELECT * FROM logitem ORDER BY date DESC")
     fun getAll(): List<LogItem>
 
     @Insert

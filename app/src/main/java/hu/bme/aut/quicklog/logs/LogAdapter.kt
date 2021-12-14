@@ -5,26 +5,23 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import hu.bme.aut.quicklog.dataModel.LogItem
-import hu.bme.aut.quicklog.databinding.ItemLogListBinding
+import hu.bme.aut.quicklog.databinding.ItemLogBinding
+import java.text.SimpleDateFormat
 
 class LogAdapter(private val listener: LogItemClickListener) : RecyclerView.Adapter<LogAdapter.LogViewHolder>() {
     private val items = mutableListOf<LogItem>()
+    private val dateFormat = SimpleDateFormat("yyyy-MM-dd")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = LogViewHolder(
-        ItemLogListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        ItemLogBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
     override fun onBindViewHolder(holder: LogViewHolder, position: Int) {
         val logItem = items[position]
         holder.binding.tvTitle.text = logItem.title
+        holder.binding.tvDate.text = dateFormat.format(logItem.date)
         holder.binding.tvDescription.text = logItem.description
         holder.binding.tvScore.text = logItem.rating.toString()
-        holder.binding.tvScore.setBackgroundResource(getBackgroundColor(logItem.rating))
-//        holder.binding.tvPrice.text = "${logItem.estimatedPrice} Ft"
-//
-//        holder.binding.cbIsBought.setOnCheckedChangeListener { buttonView, isChecked ->
-//            shoppingItem.isBought = isChecked
-//            listener.onItemChanged(shoppingItem)
-//        }
+        holder.binding.tvScore.setBackgroundColor(getBackgroundColor(logItem.rating))
     }
 
     private fun getBackgroundColor(score: Int): Int {
@@ -45,7 +42,7 @@ class LogAdapter(private val listener: LogItemClickListener) : RecyclerView.Adap
         fun onItemChanged(item: LogItem)
     }
 
-    inner class LogViewHolder(val binding: ItemLogListBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class LogViewHolder(val binding: ItemLogBinding) : RecyclerView.ViewHolder(binding.root)
 
     fun addItem(item: LogItem) {
         items.add(item)

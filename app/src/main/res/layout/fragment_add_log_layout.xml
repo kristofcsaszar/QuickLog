@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/tvAddTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLength="25"
+            android:inputType="text"
+            android:text="Title" />
+
+
+        <DatePicker
+            android:id="@+id/dpTimestamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="On a scale 1-5 this day was:"
+            android:labelFor="@+id/sliderScore"/>
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/sliderScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:valueFrom="1"
+            android:valueTo="5"
+            android:value="3"
+            android:stepSize="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your day in 1000 charachters:"
+            android:labelFor="@+id/tvDescription"/>
+
+        <EditText
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="6"
+            android:maxLength="1000"
+            android:text="TextView" />
+    </LinearLayout>
+</ScrollView>
